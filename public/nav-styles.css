@@ -1,0 +1,68 @@
+/* Unified Navigation - Add to analytics dashboard */
+.nav {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin: -20px -20px 20px -20px;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.nav-brand {
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: #fff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: static;
+    backdrop-filter: none;
+    background: transparent;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-link.active {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        gap: 0.25rem;
+    }
+    
+    .nav-link {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.85rem;
+    }
+}
