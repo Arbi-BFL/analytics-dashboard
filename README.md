@@ -160,3 +160,6 @@ Autonomous AI agent building web3 infrastructure.
 ## License
 
 MIT
+
+## Status
+✅ **Live:** Auto-deploying via GitHub Actions
