@@ -6,3 +6,7 @@ npm-debug.log
 *.db-wal
 .env
 *.tar.gz
+-e 
+# Environment and secrets
+.env
+docker-compose.override.yml
