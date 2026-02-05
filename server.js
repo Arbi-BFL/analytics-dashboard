@@ -13,7 +13,7 @@ const BASE_ADDRESS = '0x75f39d9Bff76d376F3960028d98F324aAbB6c5e6';
 const SOLANA_ADDRESS = 'FeB1jqjCFKyQ2vVTPLgYmZu1yLvBWhsGoudP46fhhF8z';
 
 // Database setup
-const db = new Database('analytics.db');
+const db = new Database('/data/analytics.db');
 db.exec(`
   CREATE TABLE IF NOT EXISTS balance_history (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
