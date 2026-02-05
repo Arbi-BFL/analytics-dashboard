@@ -1,0 +1,69 @@
+name: Deploy Analytics Dashboard
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
+      
+    - name: Build Docker image
+      run: |
+        docker build -t arbi-analytics:${{ github.sha }} .
+        docker tag arbi-analytics:${{ github.sha }} arbi-analytics:latest
+    
+    - name: Test container
+      run: |
+        docker run -d --name test-container -p 3000:3000 arbi-analytics:latest
+        sleep 5
+        curl -f http://localhost:3000/health || exit 1
+        docker stop test-container
+        docker rm test-container
+    
+    - name: Save Docker image
+      run: |
+        docker save arbi-analytics:latest | gzip > arbi-analytics.tar.gz
+    
+    - name: Deploy to server
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        source: "arbi-analytics.tar.gz,docker-compose.prod.yml"
+        target: "/tmp/arbi-analytics-deploy"
+    
+    - name: Deploy and restart container
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd /tmp/arbi-analytics-deploy
+          docker load < arbi-analytics.tar.gz
+          cd /root/deployments/arbi-analytics
+          cp /tmp/arbi-analytics-deploy/docker-compose.prod.yml ./docker-compose.yml
+          docker compose down || true
+          docker compose up -d
+          rm -rf /tmp/arbi-analytics-deploy
+          
+    - name: Verify deployment
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.SERVER_HOST }}
+        username: ${{ secrets.SERVER_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          sleep 10
+          curl -f http://localhost:3300/health || exit 1
+          echo "✅ Analytics deployment successful!"
