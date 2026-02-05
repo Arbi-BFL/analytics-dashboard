@@ -243,42 +243,249 @@
                 font-size: 0.85rem;
             }
         }
+    
+/* Unified Navbar & Footer Styles */
+
+/* Navbar - Centered brand design */
+.navbar {
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--card-border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+}
+
+.services-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.service-link {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 0.75rem 1.25rem;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.95rem;
+}
+
+.service-link:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.service-link.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.service-icon {
+    font-size: 1.1rem;
+}
+
+/* Centered Brand */
+.brand-center {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    padding: 0.75rem 2rem;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 1rem;
+}
+
+.brand-emoji {
+    font-size: 1.75rem;
+}
+
+.brand-text {
+    font-size: 1.5rem;
+    background: linear-gradient(90deg, #fff, rgba(255, 255, 255, 0.8));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Footer */
+.footer {
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(20px);
+    border-top: 1px solid var(--card-border);
+    margin-top: 4rem;
+    padding: 3rem 2rem 1rem 2rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    opacity: 0.9;
+}
+
+.footer-section p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin-bottom: 0.75rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    padding-left: 0.5rem;
+}
+
+.footer-wallet {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+}
+
+.footer-wallet code {
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.footer-status {
+    margin-top: 1rem;
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.footer-status a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.footer-status a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+.basename {
+    font-family: 'Courier New', monospace;
+    opacity: 0.9;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .services-nav {
+        gap: 0.5rem;
+    }
+    
+    .service-link {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
+    
+    .brand-center {
+        width: 100%;
+        justify-content: center;
+        margin: 0.5rem 0;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <div class="navbar-top">
-                <div class="brand">
-                    🤖 Arbi
-                    <span class="brand-subtitle">Better Future Labs</span>
-                </div>
+    <!-- Unified Navbar - Centered brand with service cards -->
+<nav class="navbar">
+    <div class="navbar-container">
+        <div class="services-nav">
+            <a href="https://arbi.betterfuturelabs.xyz" class="service-link ">
+                <span class="service-icon">🏠</span>
+                <span>Home</span>
+            </a>
+            <a href="https://wallet.arbi.betterfuturelabs.xyz" class="service-link ">
+                <span class="service-icon">💰</span>
+                <span>Wallet</span>
+            </a>
+            
+            <!-- Centered Brand -->
+            <div class="brand-center">
+                <span class="brand-emoji">🤖</span>
+                <span class="brand-text">Arbi</span>
             </div>
-            <div class="services-nav">
-                <a href="https://arbi.betterfuturelabs.xyz" class="service-link">
-                    <span class="service-icon">🏠</span>
-                    <span>Home</span>
-                </a>
-                <a href="https://wallet.arbi.betterfuturelabs.xyz" class="service-link">
-                    <span class="service-icon">💰</span>
-                    <span>Wallet</span>
-                </a>
-                <a href="https://email.arbi.betterfuturelabs.xyz" class="service-link">
-                    <span class="service-icon">📧</span>
-                    <span>Email</span>
-                </a>
-                <a href="https://analytics.arbi.betterfuturelabs.xyz" class="service-link active">
-                    <span class="service-icon">📊</span>
-                    <span>Analytics</span>
-                </a>
-                <a href="https://docs.arbi.betterfuturelabs.xyz" class="service-link">
-                    <span class="service-icon">📚</span>
-                    <span>Docs</span>
-                </a>
-            </div>
+            
+            <a href="https://email.arbi.betterfuturelabs.xyz" class="service-link ">
+                <span class="service-icon">📧</span>
+                <span>Email</span>
+            </a>
+            <a href="https://analytics.arbi.betterfuturelabs.xyz" class="service-link active">
+                <span class="service-icon">📊</span>
+                <span>Analytics</span>
+            </a>
+            <a href="https://docs.arbi.betterfuturelabs.xyz" class="service-link ">
+                <span class="service-icon">📚</span>
+                <span>Docs</span>
+            </a>
         </div>
-    </nav>
+    </div>
+</nav>
+
+
     
 
     <a href="https://arbi.betterfuturelabs.xyz" class="nav-link">← Back to Arbi</a>
@@ -459,5 +666,39 @@
         // Auto-refresh every 60 seconds
         setInterval(loadAll, 60000);
     </script>
+
+<!-- Unified Footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <div class="footer-section">
+            <h4>Connect</h4>
+            <div class="footer-links">
+                <a href="https://twitter.com/Arbi_BFL" target="_blank">𝕏 Twitter</a>
+                <a href="https://github.com/Arbi-BFL" target="_blank">GitHub</a>
+                <a href="https://basescan.org/address/0x75f39d9Bff76d376F3960028d98F324aAbB6c5e6" target="_blank">BaseScan</a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h4>Wallets</h4>
+            <div class="footer-wallet">
+                <span>⛓️ Base</span>
+                <code>0x75f39...5e6</code>
+            </div>
+            <div class="footer-wallet">
+                <span>☀️ Solana</span>
+                <code>FeB1jq...hF8z</code>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h4>About</h4>
+            <p>Autonomous AI agent building web3 products on Base & Solana.</p>
+            <p class="footer-status">✅ Operational | Automated by <a href="https://x.com/Donny_Marbles" target="_blank">@donny_marbles</a></p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>Better Future Labs © 2026 | <span class="basename">arbi.base.eth</span></p>
+    </div>
+</footer>
+
 </body>
 </html>
